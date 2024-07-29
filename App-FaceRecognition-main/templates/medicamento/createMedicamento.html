@@ -1,0 +1,27 @@
+{% extends 'Base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Medicamentos{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="jumbotron jumbotron-background text-center">
+            <h1 class="display-4">Medicamentos</h1>
+        </div>
+
+        <a href="{% url 'listMedicamentos' %}">
+            <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+        </a>
+        <div class="container title">
+            <h1>Cadastrar novo medicamento</h1>
+        </div>
+    
+        <div class="offset-1 col-3 list-div">
+            <form method="POST">
+                {% csrf_token %}
+                {{ criarMedicamento|crispy }}
+                <input type="submit" class="btn btn-success" value="Criar produto">
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

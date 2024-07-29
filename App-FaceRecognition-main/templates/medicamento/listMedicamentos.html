@@ -1,0 +1,42 @@
+{% extends 'Base.html' %}
+{% block title %}Medicamentos{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="jumbotron jumbotron-background text-center">
+            <h1 class="display-4">Medicamentos</h1>
+        </div>
+        <a href="{% url 'createMedicamentos' %}" class="btn btn-success mb-4">Adicionar Medicamento</a>
+        <form class="mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control" id="id_pesquisa" name="pesquisa" value="{{ pesquisa }}" placeholder="Pesquisar por nome">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-success">Buscar</button>
+                </div>
+            </div>
+        </form>
+        <table class="table table-striped table-hover table-bordered tab-medicamentos">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Codigo</th>
+                    <th>Quantidade</th>
+                    <th>Porta</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for medicamento in medicamentos %}
+                    <tr>
+                        <td>{{ medicamento.Nome }}</td>
+                        <td>{{ medicamento.Codigo }}</td>
+                        <td>{{ medicamento.Quantidade }}</td>
+                        <td>{{ medicamento.Porta }}</td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-muted">Nenhum medicamento encontrado.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+    </div>
+
+{% endblock %}

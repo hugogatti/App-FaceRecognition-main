@@ -1,0 +1,28 @@
+{% extends 'Base.html' %}
+{% block title %}Detalhes da Prescrição{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="jumbotron jumbotron-background text-center">
+            <h1 class="display-4">Detalhes da Prescrição</h1>
+        </div>
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Médico: {{ prescricao.Medico.Nome }}</h5>
+                        <h6 class="card-subtitle mb-2 text-muted">Paciente: {{ prescricao.Paciente.Nome }}</h6>
+                        <p class="card-text">Data do Pedido: {{ prescricao.Data }}</p>
+                        <!-- Aqui você pode adicionar mais informações sobre a prescrição se necessário -->
+                        <ul class="list-group">
+                            {% for medicamento in medicamentos_prescritos %}
+                                <li class="list-group-item">{{ medicamento.Nome }}</li>
+                            {% empty %}
+                                <li class="list-group-item">Nenhum medicamento prescrito</li>
+                            {% endfor %}
+                        </ul>    
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

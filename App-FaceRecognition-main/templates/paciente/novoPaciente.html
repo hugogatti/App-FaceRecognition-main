@@ -1,0 +1,27 @@
+{% extends 'Base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Paciente{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="jumbotron jumbotron-background text-center">
+            <h1 class="display-4">Paciente</h1>
+        </div>
+
+        <a href="{% url 'listPacientes' %}">
+            <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+        </a>
+        <div class="container title">
+            <h1>Cadastrar novo paciente</h1>
+        </div>
+    
+        <div class="offset-1 col-3 list-div">
+            <form method="POST">
+                {% csrf_token %}
+                {{ criarPaciante|crispy }}
+                <input type="submit" class="btn btn-success" value="Cadastrar paciente">
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

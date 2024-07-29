@@ -1,0 +1,43 @@
+{% extends 'Base.html' %}
+{% block title %}Prescrições{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="jumbotron jumbotron-background text-center">
+            <h1 class="display-4">Prescrições</h1>
+        </div>
+        <a href="{% url 'novaPrescricao' %}" class="btn btn-success mb-4">Adicionar Prescrição</a>
+        <!-- <form class="mb-4">
+            <div class="input-group">
+                <input type="text" class="form-control" id="id_pesquisa" name="pesquisa" value="{{ pesquisa }}" placeholder="Pesquisar por nome">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-success">Buscar</button>
+                </div>
+            </div>
+        </form> -->
+        <table class="table table-striped table-hover table-bordered tab-prescricoes">
+            <thead>
+                <tr>
+                    <th>Médico</th>
+                    <th>Paciente</th>
+                    <th>Data do Pedido</th>
+                    <th>Detalhes</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for prescricao in prescricoes %}
+                    <tr>
+                        <td>{{ prescricao.Medico.Nome }}</td>
+                        <td>{{ prescricao.Paciente.Nome }}</td>
+                        <td>{{ prescricao.Data }}</td>
+                        <td><a href="{% url 'detalhesPrescricao' prescricao.id %}">Visualizar</a></td>
+                    </tr>
+                {% empty %}
+                    <tr>
+                        <td colspan="3" class="text-muted">Nenhuma prescricao encontrado.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+{% endblock %}

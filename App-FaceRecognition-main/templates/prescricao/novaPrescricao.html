@@ -1,0 +1,28 @@
+{% extends 'Base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Prescrição{% endblock %}
+{% block content %}
+    <div class="container mt-5">
+        <div class="jumbotron jumbotron-background text-center">
+            <h1 class="display-4">Prescrição</h1>
+        </div>
+
+        <a href="{% url 'listPrescricoes' %}">
+            <i class="far fa-arrow-alt-circle-left fa-2x"></i>
+        </a>
+        <div class="container title">
+            <h1>Cadastrar nova prescrição</h1>
+        </div>
+    
+        <div class="offset-1 col-3 list-div">
+
+            <form method="POST">
+                {% csrf_token %}
+                {{ criarPrescricao|crispy }}
+                <input type="submit" class="btn btn-success" value="Cadastrar prescrição">
+            </form>
+        </div>
+
+    </div>
+{% endblock %}
